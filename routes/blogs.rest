@@ -1,0 +1,29 @@
+POST http://localhost:5000/blogs/add
+Content-Type: application/json
+
+{
+    
+    "title": "Hi Hi",
+    "text": "lorum",
+    "author": "Holy cow"
+}
+###
+
+DELETE http://localhost:5000/blogs/delete/646a5945e857a90c9c9048e4
+Content-Type: application/json
+
+###
+PATCH http://localhost:5000/blogs/update/646a591ee857a90c9c9048e2
+Content-Type: application/json
+
+{
+    
+    "title": "Updated",
+    "text": "Updated",
+    "author": "Xi"
+}
+
+###
+
+GET http://localhost:5000/blogs/646a591ee857a90c9c9048e2
+Content-Type: application/json
