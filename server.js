@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 
-const uri = "mongodb://127.0.0.1:27017/expressone";
+const uri = "mongodb://127.0.0.1:27017/multiple_api";
 
 mongoose
   .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -13,11 +13,11 @@ mongoose
     console.error("Failed to connect to MongoDB:", error);
   });
 
-const blogRoute = require("./routes/blogRoutes");
-app.use("/blogs", blogRoute);
+// const blogRoute = require("./routes/blogRoutes");
+// app.use("/blogs", blogRoute);
 
 const writerRoute = require("./routes/writerRoutes");
-app.use("/writer", writerRoute);
+app.use("/writers", writerRoute);
 
 app.listen(5000, () => {
   console.log("it's fucking working");

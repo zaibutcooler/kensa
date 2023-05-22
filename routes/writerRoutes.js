@@ -1,18 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const Writer = require("../models/writerModel");
-router.use(express.json());
+const writerController = require("../controller/writerController");
 
 router.use(express.json());
 
-router.get("/all", blogController.getAllWriter);
+router.get("/all", writerController.getAllWriter);
 
-router.get("/:id", blogController.getWriterById);
+router.get("/:id", writerController.getWriterById);
 
-router.post("/add", blogController.createWriter);
+router.post("/add", writerController.createWriter);
 
-router.delete("/delete/:id", blogController.deleteWriterById);
+router.delete("/delete/:id", writerController.deleteWriterById);
 
-router.patch("/update/:id", blogController.updateWriterById);
+router.patch("/update/:id", writerController.updateWriterById);
 
 module.exports = router;
