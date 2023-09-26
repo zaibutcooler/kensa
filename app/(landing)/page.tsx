@@ -1,3 +1,9 @@
-export default function IndexPage(){
-  return <main>Index</main>
+import HeroSection from "@/components/landing/HeroSection"
+
+export default function IndexPage() {
+  return (
+    <main>
+      <HeroSection />
+    </main>
+  )
 }
