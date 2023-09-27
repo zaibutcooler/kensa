@@ -3,6 +3,7 @@ import {
   Layout,
   LayoutDashboard,
   Mail,
+  MessageSquareDashed,
   Settings,
   ShoppingBag,
   User,
@@ -11,7 +12,11 @@ import {
 export const sidebarLinks = [
   { label: "Dashboard", icon: LayoutDashboard, route: "" },
   { label: "Convertor", icon: Layout, route: "" },
-  { label: "Email", icon: Mail, route: "" },
+  {
+    label: "Property Description",
+    icon: MessageSquareDashed,
+    route: "/property-description",
+  },
   { label: "Etc", icon: ShoppingBag, route: "" },
 ]
 
