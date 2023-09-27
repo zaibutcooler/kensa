@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 import { UserButton } from "@clerk/nextjs"
 
+import { ThemeToggle } from "../theme-toggle"
 import MobileSidebar from "./MobileSidebar"
 import { LinkType, extraSidebarLinks, sidebarLinks } from "./constant"
 
@@ -39,7 +40,8 @@ const Header = () => {
           </div>
         </div>
       </section>
-      <section>
+      <section className="flex items-center gap-4">
+        <ThemeToggle />
         <UserButton />
       </section>
     </nav>

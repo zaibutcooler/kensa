@@ -1,3 +1,9 @@
+import PropertyForm from "@/components/main/property-description/form/PropertyForm"
+
 export default function PropertyDescriptionPage() {
-  return <main>Property Description</main>
+  return (
+    <main>
+      <PropertyForm />
+    </main>
+  )
 }
