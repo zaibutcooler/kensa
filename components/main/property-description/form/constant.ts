@@ -11,11 +11,11 @@ export const propertySchema = z.object({
   outdoorFeatures: z.string().array(),
   indoorFeatures: z.string().array(),
   climateControl: z.string().array(),
-  wrtingStyle: z.string().array(),
+  writingStyle: z.string().array(),
   descriptionLength: z.number().min(1).max(500),
   other: z.string(),
   newProperty: z.string(),
-  landSize: z.number().array(),
+  landSize: z.number(),
 })
 
 export const initialValues: PropertyType = {
@@ -27,11 +27,11 @@ export const initialValues: PropertyType = {
   outdoorFeatures: [],
   indoorFeatures: [],
   climateControl: [],
-  wrtingStyle: [],
+  writingStyle: [],
   descriptionLength: 0,
   other: "",
   newProperty: "",
-  landSize: [0],
+  landSize: 0,
 }
 
 export const outdoorFeatures = [
@@ -69,3 +69,24 @@ export const writingStyle = [
   { label: "Concise", value: "concise" },
   { label: "Persuasive", value: "persuasive" },
 ]
+
+export const newPropertyData = [
+  { label: "Yes", value: "yes" },
+  { label: "No", value: "No" },
+]
+
+export const demo: PropertyType = {
+  propertyType: "House",
+  bedroom: 3,
+  bathroom: 2,
+  carSpace: 2,
+  transcriptionType: "Manual",
+  outdoorFeatures: ["swimming_pool", "garden"],
+  indoorFeatures: ["hardwood_floors", "fireplace"],
+  climateControl: ["central_heating", "air_conditioning"],
+  writingStyle: ["formal", "engaging"],
+  descriptionLength: 250,
+  other: "Additional information about the property.",
+  newProperty: "Yes",
+  landSize: 1200,
+}
