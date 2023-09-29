@@ -10,7 +10,7 @@ import toast from "react-hot-toast"
 import * as z from "zod"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import MultipleChoice from "@/components/ui/checkbox-group"
 import {
   Form,
@@ -63,280 +63,247 @@ const PropertyForm: FC<Props> = ({ handleBack, onSubmit }) => {
     <div className="flex justify-center">
       <Form {...form}>
         <form className="w-[40rem]" onSubmit={form.handleSubmit(onSubmit)}>
-          <FormField
-            name="location"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Location</FormLabel>
-                <FormControl>
-                  <Input placeholder="Location" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <div className="grid grid-cols-3 gap-4 pt-6 mb-4">
-            <FormField
-              name="bedroom"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Bedform</FormLabel>
-                  <FormControl>
-                    <Input placeholder="BedRooms" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              name="bathroom"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Bathroom</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Bathrooms" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              name="carSpace"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Car space</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Carspace" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              name="descriptionLength"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description Length</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Description Length" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              name="landSize"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Land Size</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Land Size" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="newProperty"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>New Property</FormLabel>
-
-                  <Select
-                    defaultValue={field.value}
-                    onValueChange={field.onChange}
-                    value={field.value}
-                  >
+          <section className="flex md:flex-row flex-col gap-4 mb-4">
+            <div className="md:w-2/3 w-full">
+              <FormField
+                name="location"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Location</FormLabel>
                     <FormControl>
-                      <SelectTrigger>
-                        <SelectValue
-                          placeholder="select a size"
-                          defaultValue={field.value}
-                        />
-                      </SelectTrigger>
+                      <Input placeholder="Location" {...field} />
                     </FormControl>
-                    <SelectContent>
-                      {newPropertyData.map((item) => (
-                        <SelectItem key={item.value} value={item.value}>
-                          {item.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <div className="grid grid-cols-3 gap-4">
-            <FormField
-              control={form.control}
-              name="propertyType"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Property Type</FormLabel>
-                  <Select
-                    defaultValue={field.value}
-                    onValueChange={field.onChange}
-                    value={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue
-                          placeholder="select a size"
-                          defaultValue={field.value}
-                        />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {newPropertyData.map((item) => (
-                        <SelectItem key={item.value} value={item.value}>
-                          {item.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="transcriptionType"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Transcription Type</FormLabel>
-                  <Select
-                    defaultValue={field.value}
-                    onValueChange={field.onChange}
-                    value={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue
-                          placeholder="select a size"
-                          defaultValue={field.value}
-                        />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {newPropertyData.map((item) => (
-                        <SelectItem key={item.value} value={item.value}>
-                          {item.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="md:w-1/3 w-full">
+              <FormField
+                control={form.control}
+                name="propertyType"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Property Type</FormLabel>
+                    <Select
+                      defaultValue={field.value}
+                      onValueChange={field.onChange}
+                      value={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue
+                            placeholder="select a size"
+                            defaultValue={field.value}
+                          />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {newPropertyData.map((item) => (
+                          <SelectItem key={item.value} value={item.value}>
+                            {item.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </section>
 
+          <section className="flex md:flex-row flex-col gap-4 mb-4">
+            <div className="md:w-1/3 w-full">
+              {" "}
+              <FormField
+                name="bedroom"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Bedform</FormLabel>
+                    <FormControl>
+                      <Input placeholder="BedRooms" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="md:w-1/3 w-full">
+              {" "}
+              <FormField
+                name="bathroom"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Bedform</FormLabel>
+                    <FormControl>
+                      <Input placeholder="BedRooms" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="md:w-1/3 w-full">
+              {" "}
+              <FormField
+                name="carSpace"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Bedform</FormLabel>
+                    <FormControl>
+                      <Input placeholder="BedRooms" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </section>
+          <section className="w-full mb-4">
             <Card>
-              <CardHeader>Indoor Feature</CardHeader>
-              <CardContent>
-                <FormField
-                  name="indoorFeatures"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <MultipleChoice
-                          options={indoorFeaturesData}
-                          selectedOptions={field.value}
-                          onChange={(selectedOptions: any) =>
-                            field.onChange(selectedOptions)
-                          }
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </CardContent>
+              <CardHeader>Hello</CardHeader>
+              <CardContent>Hello</CardContent>
+              <CardFooter>Hello</CardFooter>
             </Card>
-            <Card>
-              <CardHeader>Outdoor Features</CardHeader>
-              <CardContent>
-                <FormField
-                  name="outdoorFeatures"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem>
+          </section>
+          <section className="flex md:flex-row flex-col gap-4 mb-4">
+            <div className="md:w-1/3 w-full">
+              {" "}
+              <FormField
+                name="descriptionLength"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Description Length</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Description Length" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="md:w-1/3 w-full">
+              <FormField
+                name="landSize"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Land Size</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Land Size" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </section>
+          <section className="flex md:flex-row flex-col gap-4 mb-4">
+            <div className="md:w-1/3 w-full">
+              {" "}
+              <FormField
+                control={form.control}
+                name="transcriptionType"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Transcription Type</FormLabel>
+                    <Select
+                      defaultValue={field.value}
+                      onValueChange={field.onChange}
+                      value={field.value}
+                    >
                       <FormControl>
-                        <MultipleChoice
-                          options={outdoorFeaturesData}
-                          selectedOptions={field.value}
-                          onChange={(selectedOptions: any) =>
-                            field.onChange(selectedOptions)
-                          }
-                        />
+                        <SelectTrigger>
+                          <SelectValue
+                            placeholder="select a size"
+                            defaultValue={field.value}
+                          />
+                        </SelectTrigger>
                       </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>Climate Control</CardHeader>
-              <CardContent>
-                <FormField
-                  name="climateControl"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <MultipleChoice
-                          options={climateControlData}
-                          selectedOptions={field.value}
-                          onChange={(selectedOptions: any) =>
-                            field.onChange(selectedOptions)
-                          }
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </CardContent>
-            </Card>
+                      <SelectContent>
+                        {newPropertyData.map((item) => (
+                          <SelectItem key={item.value} value={item.value}>
+                            {item.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />{" "}
+            </div>
+            <div className="md:w-1/3 w-full">
+              <FormField
+                control={form.control}
+                name="newProperty"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>New Property</FormLabel>
 
-            <Button type="submit">Submit</Button>
-          </div>
-          <div className="grid grid-cols-3">
-            <Card>
-              <CardHeader>Writing Style</CardHeader>
-              <CardContent>
-                <FormField
-                  name="writingStyle"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem>
+                    <Select
+                      defaultValue={field.value}
+                      onValueChange={field.onChange}
+                      value={field.value}
+                    >
                       <FormControl>
-                        <MultipleChoice
-                          options={writingStyleData}
-                          selectedOptions={field.value}
-                          onChange={(selectedOptions: any) =>
-                            field.onChange(selectedOptions)
-                          }
-                        />
+                        <SelectTrigger>
+                          <SelectValue
+                            placeholder="select a size"
+                            defaultValue={field.value}
+                          />
+                        </SelectTrigger>
                       </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </CardContent>
-            </Card>
-            <div className="col-span-2">
+                      <SelectContent>
+                        {newPropertyData.map((item) => (
+                          <SelectItem key={item.value} value={item.value}>
+                            {item.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="md:w-1/3 w-full"></div>
+          </section>
+          <section className="flex md:flex-row flex-col gap-4 mb-4">
+            <div className="md:w-1/3 w-full">
+              {" "}
+              <Card>
+                <CardHeader>Writing Style</CardHeader>
+                <CardContent>
+                  <FormField
+                    name="writingStyle"
+                    control={form.control}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <MultipleChoice
+                            options={writingStyleData}
+                            selectedOptions={field.value}
+                            onChange={(selectedOptions: any) =>
+                              field.onChange(selectedOptions)
+                            }
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </CardContent>
+              </Card>
+            </div>
+            <div className="md:w-2/3 w-full">
+              {" "}
               <FormField
                 name="other"
                 control={form.control}
@@ -344,14 +311,20 @@ const PropertyForm: FC<Props> = ({ handleBack, onSubmit }) => {
                   <FormItem>
                     <FormLabel>Others</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Others" {...field} />
+                      <Textarea
+                        placeholder="Others"
+                        {...field}
+                        className="h-full"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
-          </div>
+          </section>
+
+          <Button type="submit">Submit</Button>
         </form>
       </Form>
     </div>
@@ -359,3 +332,73 @@ const PropertyForm: FC<Props> = ({ handleBack, onSubmit }) => {
 }
 
 export default PropertyForm
+
+// <Card>
+// <CardHeader>Indoor Feature</CardHeader>
+// <CardContent>
+//   <FormField
+//     name="indoorFeatures"
+//     control={form.control}
+//     render={({ field }) => (
+//       <FormItem>
+//         <FormControl>
+//           <MultipleChoice
+//             options={indoorFeaturesData}
+//             selectedOptions={field.value}
+//             onChange={(selectedOptions: any) =>
+//               field.onChange(selectedOptions)
+//             }
+//           />
+//         </FormControl>
+//         <FormMessage />
+//       </FormItem>
+//     )}
+//   />
+// </CardContent>
+// </Card>
+// <Card>
+// <CardHeader>Outdoor Features</CardHeader>
+// <CardContent>
+//   <FormField
+//     name="outdoorFeatures"
+//     control={form.control}
+//     render={({ field }) => (
+//       <FormItem>
+//         <FormControl>
+//           <MultipleChoice
+//             options={outdoorFeaturesData}
+//             selectedOptions={field.value}
+//             onChange={(selectedOptions: any) =>
+//               field.onChange(selectedOptions)
+//             }
+//           />
+//         </FormControl>
+//         <FormMessage />
+//       </FormItem>
+//     )}
+//   />
+// </CardContent>
+// </Card>
+// <Card>
+// <CardHeader>Climate Control</CardHeader>
+// <CardContent>
+//   <FormField
+//     name="climateControl"
+//     control={form.control}
+//     render={({ field }) => (
+//       <FormItem>
+//         <FormControl>
+//           <MultipleChoice
+//             options={climateControlData}
+//             selectedOptions={field.value}
+//             onChange={(selectedOptions: any) =>
+//               field.onChange(selectedOptions)
+//             }
+//           />
+//         </FormControl>
+//         <FormMessage />
+//       </FormItem>
+//     )}
+//   />
+// </CardContent>
+// </Card>
