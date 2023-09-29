@@ -60,9 +60,9 @@ const PropertyForm: FC<Props> = ({ handleBack, onSubmit }) => {
   useEffect(() => {}, [])
 
   return (
-    <div>
+    <div className="flex justify-center">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form className="w-[40rem]" onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
             name="location"
             control={form.control}
@@ -239,29 +239,7 @@ const PropertyForm: FC<Props> = ({ handleBack, onSubmit }) => {
                 </FormItem>
               )}
             />
-            <Card>
-              <CardHeader>Writing Style</CardHeader>
-              <CardContent>
-                <FormField
-                  name="writingStyle"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <MultipleChoice
-                          options={writingStyleData}
-                          selectedOptions={field.value}
-                          onChange={(selectedOptions: any) =>
-                            field.onChange(selectedOptions)
-                          }
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </CardContent>
-            </Card>
+
             <Card>
               <CardHeader>Indoor Feature</CardHeader>
               <CardContent>
@@ -331,20 +309,48 @@ const PropertyForm: FC<Props> = ({ handleBack, onSubmit }) => {
                 />
               </CardContent>
             </Card>
-            <FormField
-              name="other"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Others</FormLabel>
-                  <FormControl>
-                    <Textarea placeholder="Others" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+
             <Button type="submit">Submit</Button>
+          </div>
+          <div className="grid grid-cols-3">
+            <Card>
+              <CardHeader>Writing Style</CardHeader>
+              <CardContent>
+                <FormField
+                  name="writingStyle"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <MultipleChoice
+                          options={writingStyleData}
+                          selectedOptions={field.value}
+                          onChange={(selectedOptions: any) =>
+                            field.onChange(selectedOptions)
+                          }
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
+            <div className="col-span-2">
+              <FormField
+                name="other"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Others</FormLabel>
+                    <FormControl>
+                      <Textarea placeholder="Others" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
           </div>
         </form>
       </Form>

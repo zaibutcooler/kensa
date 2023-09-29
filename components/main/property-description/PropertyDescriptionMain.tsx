@@ -5,6 +5,7 @@ import axios from "axios"
 import toast from "react-hot-toast"
 
 import { Button } from "@/components/ui/button"
+import LoadingCircle from "@/components/states/LoadingCircle"
 
 import PropertyForm from "./form/PropertyForm"
 import { PropertyType } from "./form/constant"
@@ -42,7 +43,7 @@ const PropertyDescriptionMain = () => {
         <main className="flex md:flex-row flex-col h-full pb-4 pt-4 ">
           <section className="w-full h-full flex justify-center items-center">
             {loading ? (
-              <div>Loading</div>
+              <LoadingCircle />
             ) : (
               <>
                 {data ? (

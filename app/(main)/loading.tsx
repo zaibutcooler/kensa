@@ -1,5 +1,11 @@
+import LoadingCircle from "@/components/states/LoadingCircle"
+
 const DashboardLoading = () => {
-  return <div>DashboardLoading</div>
+  return (
+    <div>
+      <LoadingCircle />
+    </div>
+  )
 }
 
 export default DashboardLoading

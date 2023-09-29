@@ -1,3 +1,5 @@
+import ImageUpload from "@/components/ui/image-upload"
+
 export default function TwoDToClean() {
-  return <main>2D to clean</main>
+  return <main></main>
 }
