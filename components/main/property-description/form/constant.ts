@@ -3,6 +3,7 @@ import * as z from "zod"
 export type PropertyType = z.infer<typeof propertySchema>
 
 export const propertySchema = z.object({
+  location: z.string().min(1),
   propertyType: z.string().min(1),
   bedroom: z.number(),
   bathroom: z.number(),
@@ -19,6 +20,7 @@ export const propertySchema = z.object({
 })
 
 export const initialValues: PropertyType = {
+  location: "",
   propertyType: "",
   bedroom: 0,
   bathroom: 0,
@@ -34,7 +36,7 @@ export const initialValues: PropertyType = {
   landSize: 0,
 }
 
-export const outdoorFeatures = [
+export const outdoorFeaturesData = [
   { label: "Swimming Pool", value: "swimming_pool" },
   { label: "Garden", value: "garden" },
   { label: "Balcony", value: "balcony" },
@@ -43,7 +45,7 @@ export const outdoorFeatures = [
   { label: "Fenced Yard", value: "fenced_yard" },
 ]
 
-export const indoorFeatures = [
+export const indoorFeaturesData = [
   { label: "Hardwood Floors", value: "hardwood_floors" },
   { label: "Fireplace", value: "fireplace" },
   { label: "Walk-In Closet", value: "walk_in_closet" },
@@ -52,7 +54,7 @@ export const indoorFeatures = [
   { label: "High Ceilings", value: "high_ceilings" },
 ]
 
-export const climateControl = [
+export const climateControlData = [
   { label: "Central Heating", value: "central_heating" },
   { label: "Air Conditioning", value: "air_conditioning" },
   { label: "Ceiling Fans", value: "ceiling_fans" },
@@ -75,7 +77,30 @@ export const newPropertyData = [
   { label: "No", value: "No" },
 ]
 
+export const transcriptionTypeData = [
+  { label: "Yes", value: "yes" },
+  { label: "No", value: "No" },
+]
+
+export const propertyTypeData = [
+  { label: "House", value: "house" },
+  { label: "Apartment", value: "apartment" },
+  { label: "Condo", value: "condo" },
+  { label: "Townhouse", value: "townhouse" },
+  { label: "Duplex", value: "duplex" },
+]
+
+export const writingStyleData = [
+  { label: "Formal", value: "formal" },
+  { label: "Casual", value: "casual" },
+  { label: "Descriptive", value: "descriptive" },
+  { label: "Engaging", value: "engaging" },
+  { label: "Concise", value: "concise" },
+  { label: "Persuasive", value: "persuasive" },
+]
+
 export const demo: PropertyType = {
+  location: "Fake Location",
   propertyType: "House",
   bedroom: 3,
   bathroom: 2,

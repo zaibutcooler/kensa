@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Label } from "@radix-ui/react-label"
 import { Select } from "@radix-ui/react-select"
@@ -11,6 +11,7 @@ import * as z from "zod"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import MultipleChoice from "@/components/ui/checkbox-group"
 import {
   Form,
   FormControl,
@@ -29,18 +30,26 @@ import {
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/text-area"
 
-import MultipleChoice from "../test"
 import {
   PropertyType,
-  climateControl,
+  climateControlData,
   demo,
-  indoorFeatures,
+  indoorFeaturesData,
   initialValues,
   newPropertyData,
+  outdoorFeaturesData,
   propertySchema,
+  propertyTypeData,
+  transcriptionTypeData,
+  writingStyleData,
 } from "./constant"
 
-const PropertyForm = () => {
+interface Props {
+  handleBack: () => void
+  onSubmit: (input: PropertyType) => void
+}
+
+const PropertyForm: FC<Props> = ({ handleBack, onSubmit }) => {
   const [loading, setLoading] = useState(false)
 
   const form = useForm<PropertyType>({
@@ -50,31 +59,30 @@ const PropertyForm = () => {
 
   useEffect(() => {}, [])
 
-  const onSubmit = async (values: PropertyType) => {
-    try {
-      setLoading(true)
-      const response = await axios.post("/api/property-description", {
-        prompt: values,
-      })
-      console.log("res", response)
-    } catch (error) {
-      toast.error("Something went wrong.")
-    } finally {
-      setLoading(false)
-    }
-  }
-
   return (
     <div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
+          <FormField
+            name="location"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Location</FormLabel>
+                <FormControl>
+                  <Input placeholder="Location" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <div className="grid grid-cols-3 gap-4 pt-6 mb-4">
             <FormField
               name="bedroom"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <Label>Bedform</Label>
+                  <FormLabel>Bedform</FormLabel>
                   <FormControl>
                     <Input placeholder="BedRooms" {...field} />
                   </FormControl>
@@ -87,7 +95,7 @@ const PropertyForm = () => {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <Label>Bathroom</Label>
+                  <FormLabel>Bathroom</FormLabel>
                   <FormControl>
                     <Input placeholder="Bathrooms" {...field} />
                   </FormControl>
@@ -100,7 +108,7 @@ const PropertyForm = () => {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <Label>Car space</Label>
+                  <FormLabel>Car space</FormLabel>
                   <FormControl>
                     <Input placeholder="Carspace" {...field} />
                   </FormControl>
@@ -113,7 +121,7 @@ const PropertyForm = () => {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <Label>Description Length</Label>
+                  <FormLabel>Description Length</FormLabel>
                   <FormControl>
                     <Input placeholder="Description Length" {...field} />
                   </FormControl>
@@ -127,7 +135,7 @@ const PropertyForm = () => {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <Label>Land Size</Label>
+                  <FormLabel>Land Size</FormLabel>
                   <FormControl>
                     <Input placeholder="Land Size" {...field} />
                   </FormControl>
@@ -140,7 +148,8 @@ const PropertyForm = () => {
               name="newProperty"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Sizes</FormLabel>
+                  <FormLabel>New Property</FormLabel>
+
                   <Select
                     defaultValue={field.value}
                     onValueChange={field.onChange}
@@ -168,51 +177,82 @@ const PropertyForm = () => {
             />
           </div>
           <div className="grid grid-cols-3 gap-4">
-            {/* <Card>
-              <CardHeader>Property Type</CardHeader>
-              <CardContent>
-                <FormField
-                  name="propertyType"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <div className="flex items-center space-x-2">
-                          <MultipleChoice
-                            options={[
-                              { label: "Option 1", value: "option-1" },
-                              { label: "Option 2", value: "option-2" },
-                            ]}
-                            selectedOption={field.value}
-                            onChange={(selectedOption: any) => {
-                              field.onChange(selectedOption)
-                              console.log(field.value)
-                            }}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </CardContent>
-            </Card>
+            <FormField
+              control={form.control}
+              name="propertyType"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Property Type</FormLabel>
+                  <Select
+                    defaultValue={field.value}
+                    onValueChange={field.onChange}
+                    value={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue
+                          placeholder="select a size"
+                          defaultValue={field.value}
+                        />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {newPropertyData.map((item) => (
+                        <SelectItem key={item.value} value={item.value}>
+                          {item.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="transcriptionType"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Transcription Type</FormLabel>
+                  <Select
+                    defaultValue={field.value}
+                    onValueChange={field.onChange}
+                    value={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue
+                          placeholder="select a size"
+                          defaultValue={field.value}
+                        />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {newPropertyData.map((item) => (
+                        <SelectItem key={item.value} value={item.value}>
+                          {item.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <Card>
-              <CardHeader>Transcription Type</CardHeader>
+              <CardHeader>Writing Style</CardHeader>
               <CardContent>
                 <FormField
-                  name="transcriptionType"
+                  name="writingStyle"
                   control={form.control}
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
                         <MultipleChoice
-                          options={[
-                            { label: "Option 1", value: "option-1" },
-                            { label: "Option 2", value: "option-2" },
-                          ]}
-                          onChange={(selectedOption: any) =>
-                            field.onChange(selectedOption)
+                          options={writingStyleData}
+                          selectedOptions={field.value}
+                          onChange={(selectedOptions: any) =>
+                            field.onChange(selectedOptions)
                           }
                         />
                       </FormControl>
@@ -223,31 +263,6 @@ const PropertyForm = () => {
               </CardContent>
             </Card>
             <Card>
-              <CardHeader>Writing Style</CardHeader>
-              <CardContent>
-                <FormField
-                  name="writingStyle"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <RadioGroup defaultValue="option-one">
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem
-                              value="option-one"
-                              id="option-one"
-                            />
-                            <Label htmlFor="option-one">Option One</Label>
-                          </div>
-                        </RadioGroup>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </CardContent>
-            </Card> */}
-            <Card>
               <CardHeader>Indoor Feature</CardHeader>
               <CardContent>
                 <FormField
@@ -257,7 +272,7 @@ const PropertyForm = () => {
                     <FormItem>
                       <FormControl>
                         <MultipleChoice
-                          options={indoorFeatures}
+                          options={indoorFeaturesData}
                           selectedOptions={field.value}
                           onChange={(selectedOptions: any) =>
                             field.onChange(selectedOptions)
@@ -279,15 +294,13 @@ const PropertyForm = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <RadioGroup defaultValue="option-one">
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem
-                              value="option-one"
-                              id="option-one"
-                            />
-                            <Label htmlFor="option-one">Option One</Label>
-                          </div>
-                        </RadioGroup>
+                        <MultipleChoice
+                          options={outdoorFeaturesData}
+                          selectedOptions={field.value}
+                          onChange={(selectedOptions: any) =>
+                            field.onChange(selectedOptions)
+                          }
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -304,21 +317,13 @@ const PropertyForm = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <RadioGroup
-                          onValueChange={field.onChange}
-                          defaultValue="option-one"
-                        >
-                          {climateControl.map((item, index) => (
-                            <div className="flex items-center space-x-2">
-                              <RadioGroupItem
-                                key={index}
-                                value={item.value}
-                                id={item.value}
-                              />
-                              <Label htmlFor={item.value}>{item.label}</Label>
-                            </div>
-                          ))}
-                        </RadioGroup>
+                        <MultipleChoice
+                          options={climateControlData}
+                          selectedOptions={field.value}
+                          onChange={(selectedOptions: any) =>
+                            field.onChange(selectedOptions)
+                          }
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -331,7 +336,7 @@ const PropertyForm = () => {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <Label>Others</Label>
+                  <FormLabel>Others</FormLabel>
                   <FormControl>
                     <Textarea placeholder="Others" {...field} />
                   </FormControl>
