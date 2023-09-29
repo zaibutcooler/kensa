@@ -2,10 +2,9 @@ import { Icon } from "next/dist/lib/metadata/types/metadata-types"
 import {
   Box,
   HelpCircleIcon,
-  IconNode,
-  Layout,
   LayoutDashboard,
   Mail,
+  MapIcon,
   MessageSquareDashed,
   Paintbrush,
   Pencil,
@@ -16,6 +15,16 @@ import {
 
 export const sidebarLinks = [
   { label: "Dashboard", icon: LayoutDashboard, route: "/dashboard" },
+  {
+    label: "Lead Gen",
+    icon: MapIcon,
+    route: "/leadgen",
+  },
+  {
+    label: "Emailing",
+    icon: Mail,
+    route: "/emailing",
+  },
   {
     label: "Property Description",
     icon: MessageSquareDashed,

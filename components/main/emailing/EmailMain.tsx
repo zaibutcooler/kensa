@@ -6,20 +6,20 @@ import toast from "react-hot-toast"
 
 import { Button } from "@/components/ui/button"
 
-import PropertyForm from "./form/PropertyForm"
-import { PropertyType } from "./form/constant"
+import EmailForm from "./form/EmailForm"
+import { EmailType } from "./form/constant"
 
-const PropertyDescriptionMain = () => {
+const EmailMain = () => {
   const [displayMain, setDisplayMain] = useState(true)
   const [pastDatas, setPastDatas] = useState([])
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState<string>("")
 
-  const handleSubmit = async (values: PropertyType) => {
+  const handleSubmit = async (values: EmailType) => {
     try {
       setDisplayMain(true)
       setLoading(true)
-      const response = await axios.post("/api/property-description", {
+      const response = await axios.post("/api/emailing", {
         prompt: values,
       })
       setData(response.data.content)
@@ -61,11 +61,11 @@ const PropertyDescriptionMain = () => {
         </main>
       ) : (
         <main className="h-full overflow-y-auto pt-4 ">
-          <PropertyForm handleBack={handleBack} onSubmit={handleSubmit} />
+          <EmailForm handleBack={handleBack} onSubmit={handleSubmit} />
         </main>
       )}
     </>
   )
 }
 
-export default PropertyDescriptionMain
+export default EmailMain

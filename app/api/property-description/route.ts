@@ -47,7 +47,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(response.choices[0].message)
   } catch (error) {
-    console.log("[CONVERSATION_ERROR]", error)
+    console.log("[GENERATION_ERROR]", error)
     return new NextResponse("Internal Error", { status: 500 })
   }
 }
