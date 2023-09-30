@@ -3,6 +3,7 @@ import { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
 
+import { ModalProvider } from "@/components/providers/modal-provider"
 import { ThemeProvider } from "@/components/providers/theme-provider"
 import { ToastProvider } from "@/components/providers/toast-provider"
 
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <head />
         <body className={inter.className}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <ModalProvider />
             <ClerkProvider>{children}</ClerkProvider>
             <ToastProvider />
           </ThemeProvider>

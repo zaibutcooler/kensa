@@ -70,7 +70,7 @@ const FeatureFormModal = () => {
                     <Button
                       disabled={loading}
                       variant="outline"
-                      onClick={formModal.onClose}
+                      onClick={formModal.onOpen}
                     >
                       Cancel
                     </Button>
