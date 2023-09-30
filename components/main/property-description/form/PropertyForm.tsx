@@ -5,10 +5,12 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Label } from "@radix-ui/react-label"
 import { Select } from "@radix-ui/react-select"
 import axios from "axios"
+import { X } from "lucide-react"
 import { useForm } from "react-hook-form"
 import toast from "react-hot-toast"
 import * as z from "zod"
 
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import MultipleChoice from "@/components/ui/checkbox-group"
@@ -154,7 +156,7 @@ const PropertyForm: FC<Props> = ({ handleBack, onSubmit }) => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Bedform</FormLabel>
+                    <FormLabel>Car Space</FormLabel>
                     <FormControl>
                       <Input placeholder="BedRooms" {...field} />
                     </FormControl>
@@ -165,11 +167,29 @@ const PropertyForm: FC<Props> = ({ handleBack, onSubmit }) => {
             </div>
           </section>
           <section className="w-full mb-4">
-            <Card>
-              <CardHeader>Hello</CardHeader>
-              <CardContent>Hello</CardContent>
-              <CardFooter>Hello</CardFooter>
-            </Card>
+            <FormItem>
+              <FormLabel>Description Length</FormLabel>
+              <Card>
+                <CardHeader>
+                  <div>
+                    <Badge
+                      variant="secondary"
+                      className="px-3 py-1 font-medium"
+                    >
+                      Hello{" "}
+                      <button onClick={() => {}}>
+                        <X className=" ml-1 w-4 h-4" />
+                      </button>
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardFooter className="flex justify-end">
+                  <Button type="button" size="sm" className="text-xs">
+                    Add More
+                  </Button>
+                </CardFooter>
+              </Card>
+            </FormItem>
           </section>
           <section className="flex md:flex-row flex-col gap-4 mb-4">
             <div className="md:w-1/3 w-full">
@@ -203,8 +223,6 @@ const PropertyForm: FC<Props> = ({ handleBack, onSubmit }) => {
                 )}
               />
             </div>
-          </section>
-          <section className="flex md:flex-row flex-col gap-4 mb-4">
             <div className="md:w-1/3 w-full">
               {" "}
               <FormField
@@ -239,47 +257,15 @@ const PropertyForm: FC<Props> = ({ handleBack, onSubmit }) => {
                 )}
               />{" "}
             </div>
-            <div className="md:w-1/3 w-full">
-              <FormField
-                control={form.control}
-                name="newProperty"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>New Property</FormLabel>
-
-                    <Select
-                      defaultValue={field.value}
-                      onValueChange={field.onChange}
-                      value={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue
-                            placeholder="select a size"
-                            defaultValue={field.value}
-                          />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {newPropertyData.map((item) => (
-                          <SelectItem key={item.value} value={item.value}>
-                            {item.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <div className="md:w-1/3 w-full"></div>
           </section>
+
           <section className="flex md:flex-row flex-col gap-4 mb-4">
             <div className="md:w-1/3 w-full">
               {" "}
               <Card>
-                <CardHeader>Writing Style</CardHeader>
+                <CardHeader className="text-sm font-semibol pb-4">
+                  Writing Style
+                </CardHeader>{" "}
                 <CardContent>
                   <FormField
                     name="writingStyle"
@@ -302,8 +288,7 @@ const PropertyForm: FC<Props> = ({ handleBack, onSubmit }) => {
                 </CardContent>
               </Card>
             </div>
-            <div className="md:w-2/3 w-full">
-              {" "}
+            <div className="md:w-2/3 w-full h-full">
               <FormField
                 name="other"
                 control={form.control}
@@ -311,11 +296,7 @@ const PropertyForm: FC<Props> = ({ handleBack, onSubmit }) => {
                   <FormItem>
                     <FormLabel>Others</FormLabel>
                     <FormControl>
-                      <Textarea
-                        placeholder="Others"
-                        {...field}
-                        className="h-full"
-                      />
+                      <Textarea placeholder="Others" {...field} rows={9} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -323,8 +304,9 @@ const PropertyForm: FC<Props> = ({ handleBack, onSubmit }) => {
               />
             </div>
           </section>
-
-          <Button type="submit">Submit</Button>
+          <section className="flex justify-end">
+            <Button type="submit">Generate Text</Button>
+          </section>
         </form>
       </Form>
     </div>
@@ -402,3 +384,36 @@ export default PropertyForm
 //   />
 // </CardContent>
 // </Card>
+
+// <FormField
+//                 control={form.control}
+//                 name="newProperty"
+//                 render={({ field }) => (
+//                   <FormItem>
+//                     <FormLabel>New Property</FormLabel>
+
+//                     <Select
+//                       defaultValue={field.value}
+//                       onValueChange={field.onChange}
+//                       value={field.value}
+//                     >
+//                       <FormControl>
+//                         <SelectTrigger>
+//                           <SelectValue
+//                             placeholder="select a size"
+//                             defaultValue={field.value}
+//                           />
+//                         </SelectTrigger>
+//                       </FormControl>
+//                       <SelectContent>
+//                         {newPropertyData.map((item) => (
+//                           <SelectItem key={item.value} value={item.value}>
+//                             {item.label}
+//                           </SelectItem>
+//                         ))}
+//                       </SelectContent>
+//                     </Select>
+//                     <FormMessage />
+//                   </FormItem>
+//                 )}
+//               />

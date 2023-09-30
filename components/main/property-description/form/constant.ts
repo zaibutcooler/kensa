@@ -17,7 +17,7 @@ export const propertySchema = z.object({
   writingStyle: z.string().array(),
   descriptionLength: z.number().min(1).max(500),
   other: z.string(),
-  newProperty: z.string(),
+  // newProperty: z.string(),
   landSize: z.number(),
 })
 
@@ -35,7 +35,7 @@ export const initialValues: PropertyType = {
   writingStyle: [],
   descriptionLength: 0,
   other: "",
-  newProperty: "",
+  // newProperty: "",
   landSize: 0,
 }
 
@@ -116,6 +116,5 @@ export const demo: PropertyType = {
   writingStyle: ["formal", "engaging"],
   descriptionLength: 250,
   other: "Additional information about the property.",
-  newProperty: "Yes",
   landSize: 1200,
 }

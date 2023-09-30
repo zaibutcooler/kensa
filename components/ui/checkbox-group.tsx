@@ -11,7 +11,7 @@ const MultipleChoice = ({ options, selectedOptions, onChange }: any) => {
   return (
     <div>
       {options.map((option: any) => (
-        <label key={option.value} className="flex items-center space-x-2">
+        <label key={option.value} className="flex items-center space-x-4">
           <input
             type="checkbox"
             name="multiple-choice"
@@ -19,7 +19,7 @@ const MultipleChoice = ({ options, selectedOptions, onChange }: any) => {
             checked={selectedOptions.includes(option.value)}
             onChange={() => handleOptionChange(option.value)}
           />
-          <span>{option.label}</span>
+          <span className="text-sm mb-1">{option.label}</span>
         </label>
       ))}
     </div>
