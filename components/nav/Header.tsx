@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 import { UserButton } from "@clerk/nextjs"
 
-import { ThemeToggle } from "../theme-toggle"
+import { ThemeToggle } from "../ui/theme-toggle"
 import MobileSidebar from "./MobileSidebar"
 import { LinkType, extraSidebarLinks, sidebarLinks } from "./constant"
 

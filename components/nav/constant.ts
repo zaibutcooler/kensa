@@ -30,9 +30,7 @@ export const sidebarLinks = [
     icon: MessageSquareDashed,
     route: "/property-description",
   },
-  { label: "Hand Drawing to 2D", icon: Pencil, route: "/Sketch-2D" },
-  { label: "Colorize 2D Drawing", icon: Paintbrush, route: "/2D-Clean" },
-  { label: "3D conversion", icon: Box, route: "/2D-3D" },
+  { label: "Drawing Conversion", icon: Pencil, route: "/image-conversion" },
 ]
 
 export const extraSidebarLinks = [

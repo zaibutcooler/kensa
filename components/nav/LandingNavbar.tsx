@@ -1,7 +1,7 @@
 import Link from "next/link"
 
-import { ThemeToggle } from "../theme-toggle"
 import { Button } from "../ui/button"
+import { ThemeToggle } from "../ui/theme-toggle"
 
 const LandingNavbar = () => {
   return (

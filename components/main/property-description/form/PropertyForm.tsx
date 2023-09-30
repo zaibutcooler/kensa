@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form"
 import toast from "react-hot-toast"
 import * as z from "zod"
 
+import { useModal } from "@/hooks/useModal"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
@@ -53,6 +54,7 @@ interface Props {
 
 const PropertyForm: FC<Props> = ({ handleBack, onSubmit }) => {
   const [loading, setLoading] = useState(false)
+  const formModal = useModal()
 
   const form = useForm<PropertyType>({
     resolver: zodResolver(propertySchema),
@@ -184,7 +186,12 @@ const PropertyForm: FC<Props> = ({ handleBack, onSubmit }) => {
                   </div>
                 </CardHeader>
                 <CardFooter className="flex justify-end">
-                  <Button type="button" size="sm" className="text-xs">
+                  <Button
+                    type="button"
+                    size="sm"
+                    className="text-xs"
+                    onClick={formModal.onOpen}
+                  >
                     Add More
                   </Button>
                 </CardFooter>
