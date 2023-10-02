@@ -1,10 +1,10 @@
 import { FC } from "react"
 
-import { PropertyType } from "../../property-description/form/constant"
+import { EmailType } from "./constant"
 
 interface Props {
   handleBack: () => void
-  onSubmit: (input: PropertyType) => void
+  onSubmit: (input: EmailType) => void
 }
 
 const EmailForm: FC<Props> = ({ handleBack, onSubmit }) => {

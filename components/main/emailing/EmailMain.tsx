@@ -8,14 +8,16 @@ import { Button } from "@/components/ui/button"
 
 import EmailForm from "./form/EmailForm"
 import { EmailType } from "./form/constant"
+import EmailSummerize from "./summerize/EmailSummerize"
 
 const EmailMain = () => {
   const [displayMain, setDisplayMain] = useState(true)
+  const [display, setDisplay] = useState("none")
   const [pastDatas, setPastDatas] = useState([])
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState<string>("")
 
-  const handleSubmit = async (values: EmailType) => {
+  const handleFormSubmit = async (values: EmailType) => {
     try {
       setDisplayMain(true)
       setLoading(true)
@@ -32,39 +34,40 @@ const EmailMain = () => {
     }
   }
 
+  const render = () => {
+    switch (display) {
+      case "none":
+        return (
+          <div>
+            <Button
+              onClick={() => {
+                setDisplay("form")
+              }}
+            >
+              Email
+            </Button>
+            <Button
+              onClick={() => {
+                setDisplay("sum")
+              }}
+            >
+              Summerize
+            </Button>
+          </div>
+        )
+      case "form":
+        return <EmailForm handleBack={handleBack} onSubmit={handleFormSubmit} />
+      case "sum":
+        return <EmailSummerize />
+    }
+  }
+
   const handleBack = () => {
-    setDisplayMain(true)
+    setDisplay("none")
   }
 
   return (
-    <>
-      {displayMain ? (
-        <main className="flex md:flex-row flex-col h-full pb-4 pt-4 ">
-          <section className="w-full h-full flex justify-center items-center">
-            {loading ? (
-              <div>Loading</div>
-            ) : (
-              <>
-                {data ? (
-                  <div>{data}</div>
-                ) : (
-                  <div>
-                    <Button onClick={() => setDisplayMain(false)}>
-                      Generate New
-                    </Button>
-                  </div>
-                )}
-              </>
-            )}
-          </section>
-          <section className="w-80 h-full">Past Displays</section>
-        </main>
-      ) : (
-        <main className="h-full overflow-y-auto pt-4 ">
-          <EmailForm handleBack={handleBack} onSubmit={handleSubmit} />
-        </main>
-      )}
-    </>
+    <>{loading ? <div>Loading</div> : <div className="pt-4">{render()}</div>}</>
   )
 }
 
