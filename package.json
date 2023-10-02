@@ -46,6 +46,7 @@
     "date-fns": "^2.30.0",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.5",
+    "google-map-react": "^2.2.1",
     "lucide-react": "^0.279.0",
     "next": "^13.4.8",
     "next-cloudinary": "^4.12.0",

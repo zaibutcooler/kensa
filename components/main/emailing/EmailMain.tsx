@@ -11,7 +11,6 @@ import { EmailType } from "./form/constant"
 import EmailSummerize from "./summerize/EmailSummerize"
 
 const EmailMain = () => {
-  const [displayMain, setDisplayMain] = useState(true)
   const [display, setDisplay] = useState("none")
   const [pastDatas, setPastDatas] = useState([])
   const [loading, setLoading] = useState(false)
@@ -19,19 +18,22 @@ const EmailMain = () => {
 
   const handleFormSubmit = async (values: EmailType) => {
     try {
-      setDisplayMain(true)
       setLoading(true)
       const response = await axios.post("/api/emailing", {
         prompt: values,
       })
       setData(response.data.content)
+      setDisplay("none")
       toast.success("Successfully Generated")
     } catch (error) {
       toast.error("Something went wrong.")
-      setDisplayMain(false)
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleSummarySubmit = async (values: EmailType) => {
+    //haven't decided yet
   }
 
   const render = () => {
