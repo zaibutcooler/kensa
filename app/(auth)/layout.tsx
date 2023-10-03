@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 
-import LandingNavbar from "@/components/nav/LandingNavbar"
+import LandingNavbar from "@/components/nav/landingNavbar/LandingNavbar"
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
   return (

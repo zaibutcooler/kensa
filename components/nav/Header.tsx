@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation"
 import { UserButton } from "@clerk/nextjs"
 
 import { ThemeToggle } from "../ui/theme-toggle"
-import MobileSidebar from "./MobileSidebar"
-import { LinkType, extraSidebarLinks, sidebarLinks } from "./constant"
+import MobileSidebar from "./sidebar/MobileSidebar"
+import { LinkType, extraSidebarLinks, sidebarLinks } from "./sidebar/constant"
 
 const Header = () => {
   const pathname = usePathname()

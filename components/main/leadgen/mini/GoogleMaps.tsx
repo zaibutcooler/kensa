@@ -13,7 +13,9 @@ const location = {
   lng: 17.6305953,
 }
 
-const apiKey = process.env.GOOGLE_MAPS_API_KEY as string
+// const apiKey = process.env.GOOGLE_MAPS_API_KEY as string
+const apiKey = "AIzaSyAvtQtWZN0J95jjIwJ6VFahlpf7Cpn43do"
+console.log("ak", apiKey)
 
 const containerStyle = {
   width: "100%",

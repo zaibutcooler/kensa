@@ -186,14 +186,14 @@ const PropertyForm: FC<Props> = ({ handleBack, onSubmit }) => {
                   </div>
                 </CardHeader>
                 <CardFooter className="flex justify-end">
-                  <Button
+                  {/* <Button
                     type="button"
                     size="sm"
                     className="text-xs"
                     onClick={formModal.onOpen}
                   >
                     Add More
-                  </Button>
+                  </Button> */}
                 </CardFooter>
               </Card>
             </FormItem>

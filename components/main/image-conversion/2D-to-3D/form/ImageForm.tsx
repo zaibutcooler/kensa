@@ -13,11 +13,10 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import ImageUpload from "@/components/ui/image-upload"
-import loading from "@/app/(landing)/loading"
 
 import { ImageType, imageSchema } from "./constant"
 
-const To3DForm = () => {
+const ImageForm = () => {
   const [loading, setLoading] = useState(false)
 
   const form = useForm<ImageType>({
@@ -51,4 +50,4 @@ const To3DForm = () => {
   )
 }
 
-export default To3DForm
+export default ImageForm

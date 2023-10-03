@@ -1,7 +1,7 @@
 import { ReactNode } from "react"
 
 import Header from "@/components/nav/Header"
-import Sidebar from "@/components/nav/Sidebar"
+import Sidebar from "@/components/nav/sidebar/Sidebar"
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
