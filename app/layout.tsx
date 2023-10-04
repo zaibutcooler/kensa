@@ -20,7 +20,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <>
       <html lang="en" suppressHydrationWarning>
         <head />
-        <body className={inter.className}>
+        <body>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Toaster />
             <ClerkProvider>{children}</ClerkProvider>
