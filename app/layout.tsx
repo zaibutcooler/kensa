@@ -25,7 +25,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <Toaster />
             <ClerkProvider>
               <Navbar />
-              <div className="mx-auto max-w-7xl">{children}</div>
+              {children}
             </ClerkProvider>
           </ThemeProvider>
         </body>
