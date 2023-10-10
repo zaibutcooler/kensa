@@ -1,4 +1,7 @@
 import { scrapeAndStore } from "@/lib/actions"
+import FeaturesSection from "@/components/landing/feature/FeatureSection"
+import HeroSection from "@/components/landing/hero/HeroSection"
+import PricingSection from "@/components/landing/pricing/PricingSection"
 import ScrapingForm from "@/components/main/ScrapingForm"
 
 export default function LandingPage() {
@@ -7,8 +10,10 @@ export default function LandingPage() {
   // )
 
   return (
-    <main>
-      <ScrapingForm />
+    <main className="">
+      <HeroSection />
+      <FeaturesSection />
+      <PricingSection />
     </main>
   )
 }
