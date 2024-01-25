@@ -1,0 +1,34 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Build and Push Client Docker Image
+      working-directory: client
+      run: |
+        docker build -t your-aws-ecr-url/client:$GITHUB_SHA .
+        echo $AWS_ACCESS_KEY_ID | docker login -u AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+        docker push your-aws-ecr-url/client:$GITHUB_SHA
+
+    - name: Build and Push Server Docker Image
+      working-directory: server
+      run: |
+        docker build -t your-aws-ecr-url/server:$GITHUB_SHA .
+        echo $AWS_ACCESS_KEY_ID | docker login -u AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+        docker push your-aws-ecr-url/server:$GITHUB_SHA
+
+    - name: Deploy to AWS ECS
+      run: |
+        # Use AWS CLI or ECS CLI to update your ECS service with the new Docker images
+        # Example: aws ecs update-service --cluster your-cluster-name --service your-service-name --force-new-deployment
+
